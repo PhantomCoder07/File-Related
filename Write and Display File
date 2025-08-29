@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main()
+{
+    FILE *file1, *file2;
+    char ch,name[100];
+    int age;
+    file1 = fopen ("INPUT.txt","w");
+    file2 = fopen ("INPUT.txt","r");
+    if (file1==NULL)
+        printf ("File does not exist. ");
+    else
+    {
+        printf ("File is opened successfully.\n");
+        printf ("Enter your name: ");
+        gets (name);
+        printf ("Enter your age: ");
+        scanf ("%d",&age);
+        fprintf (file1,"Name = %s \nAge = %d\n",name,age);
+        printf ("File is written successfully.\n");
+        fclose(file1);
+    }
+    printf ("\n----------------------------------\n\n");
+    if (file2==NULL)
+    {
+        printf ("File does not exist. ");
+    }
+    else
+    {
+        printf ("Displaying The file:\n");
+        while (!feof(file2))
+        {
+            ch= fgetc (file2);
+            printf ("%c",ch);
+        }
+        fclose(file2);
+    }
+    return 0;
+}
