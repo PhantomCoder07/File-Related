@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+    FILE *file1, *file2;
+    char ch;
+    int age;
+    file1 = fopen ("INPUT.txt","r");
+    file2 = fopen ("INPUTC.txt","w");
+    if (file1==NULL || file2==NULL)
+        printf ("File does not exist.");
+    else
+    {
+        printf ("Displaying The file: \n");
+        while (!feof(file1))
+        {
+            ch=fgetc(file1);
+            printf ("%c",ch);
+            fputc (ch,file2);
+        }
+        printf ("\nCopied successfully.\n");
+        fclose(file1);
+        fclose(file2);
+    }
+    return 0;
+}
