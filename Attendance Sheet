@@ -1,0 +1,53 @@
+#include <stdio.h>
+int main()
+{
+    printf ("--------Attendance sheet of students--------\n");
+    printf ("-----Instruction: entry '1' for present-----\n");
+    printf ("-----Instruction: entry '0' for absents-----\n");
+    printf ("-Use .txt extension with date for save file-\n");
+    printf ("--------------------------------------------\n");
+    int i,n,c1=0,c2=0,ap;
+    FILE *file;
+    char s[20];
+    printf("Enter date: ");
+    scanf("%s",s);
+    file = fopen (s,"w");
+    if (file==NULL)
+    {
+        printf ("File does not exists.");
+    }
+    else
+    {
+        printf("Enter total student's number: ");
+        scanf("%d",&n);
+        printf ("Attendance sheet opened for Date: %s\n\n",s);
+        for (i=1; i<=n; i++)
+        {
+            printf ("ID No.%d: ",i);
+            scanf ("%d",&ap);
+            if (ap==1)
+            {
+                fprintf (file,"ID no.%d = Present\n",i);
+                c1++;
+            }
+            else if (ap==0)
+            {
+                fprintf (file,"ID no.%d = Absent\n",i);
+                c2++;
+            }
+            else
+            {
+                printf ("---------Unidentified entry----------\n");
+                printf ("Re-enter:\n");
+                i--;
+            }
+        }
+        printf ("Total present: %d\n",c1);
+        printf ("Total absent: %d\n",c2);
+        fprintf (file,"Total Present: %d\n",c1);
+        fprintf (file,"Total Absent: %d\n",c2);
+        printf ("Student entry successful.\n");
+        fclose(file);
+    }
+    return 0;
+}
