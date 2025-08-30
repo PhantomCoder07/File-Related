@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    FILE *fp;
+    fp = fopen("SUM.txt","r");
+    int a,b;
+    fscanf(fp,"%d",&a);
+    fscanf(fp,"%d",&b);
+    fclose(fp);
+    fp = fopen("SUM.txt","w");
+    fprintf(fp,"%d",a+b);
+    fclose(fp);
+    return 0;
+}
