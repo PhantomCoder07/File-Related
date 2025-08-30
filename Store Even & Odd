@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    FILE *f1,*f2,*f3;
+    f1 = fopen("DATA.txt","w");
+    f2 = fopen("EVEN.txt","w");
+    f3 = fopen("ODD.txt","w");
+    int a,n;
+    if (f1==NULL || f2==NULL || f3==NULL)
+    {
+        printf("Error opening file!\n");
+        exit(0);
+    }
+    printf("Enter number limit: ");
+    scanf("%d",&n);
+    int m[n];
+    printf("Enter numbers; ");
+    for (int i=0; i<n; i++)
+    {
+        scanf("%d",&m[i]);
+        fprintf(f1,"%d ",m[i]);
+    }
+    fclose(f1);
+    f1 = fopen("DATA.txt","r");
+    while (fscanf(f1,"%d",&a)!=EOF)
+    {
+        if (a%2==0)
+            putw(a,f2);
+        else
+            putw(a,f3);
+    }
+    fclose(f1);
+    fclose(f2);
+    fclose(f3);
+    f2 = fopen("EVEN.txt","r");
+    f3 = fopen("ODD.txt","r");
+    if (f2==NULL || f3==NULL)
+    {
+        printf("Error opening file!\n");
+        exit(0);
+    }
+    printf("Contents of EVEN file:\n");
+    while ((a=getw(f2))!=EOF)
+    {
+        printf("%d ",a);
+    }
+    printf("\nContents of ODD file:\n");
+    while ((a=getw(f3))!=EOF)
+    {
+        printf("%d ",a);
+    }
+    fclose(f2);
+    fclose(f3);
+    return 0;
+}
