@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    FILE *fp;
+    fp = fopen("Student.txt","w");
+    char name[20];
+    int roll;
+    float cgpa;
+    printf("Enter student's name: ");
+    gets(name);
+    printf("Enter student's roll: ");
+    scanf("%d",&roll);
+    printf("Enter student's CGPA: ");
+    scanf("%f",&cgpa);
+    fprintf(fp,"Student's name: %s\n",name);
+    fprintf(fp,"Student's roll: %d\n",roll);
+    fprintf(fp,"Student's CGPA: %.2f\n",cgpa);
+    fclose(fp);
+    fp = fopen("Student.txt","r");
+    char ch;
+    while (!feof(fp))
+    {
+        ch = fgetc(fp);
+        printf("%c",ch);
+    }
+    fclose(fp);
+    return 0;
+}
